@@ -1,0 +1,34 @@
+
+body{
+    background-color: gray;
+}
+#search-box{
+    margin: 10px 0px 25px 0px;
+}
+
+#search{
+    height: 28px;
+    font-size:1rem ;
+}
+#opt{
+    height: 30px;
+
+}
+.back{
+    background-color:#336d62;
+    
+    /* color: whitesmoke; */
+    width: 80px;
+    height: 30px;
+    font-size: 1.2rem;
+    font-weight:500;
+    text-align: center;
+}
+#goback{
+    text-decoration: none;
+    color:white;
+    margin-top: 2px;
+
+
+}
+  

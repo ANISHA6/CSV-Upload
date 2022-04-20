@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/file.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <title>File : <%= title %> </title>
+</head>
+<body>
+    <div class="file">
+        <div class="back">
+            <a  id="goback"  href="/"> Home</a>
+        </div>
+
+        <div id="search-box">
+            
+            <input type="text" name="search" id="search" placeholder="Enter Text"></input>
+            
+            <span>Search Using</span>
+            <select name="option" id="opt">
+                <% for(let i=0; i<head.length; i++){ %>
+                    <option value="<%= i %>"><%= head[i] %></option>
+                <% } %> 
+            </select>
+            <span>(It's Case Sensitive)</span>
+        </div>
+
+
+        <table id="table" border="1">
+            
+            <tr>
+                <% for(let i=0; i<head.length; i++){ %>
+                    <th>
+                        <%= head[i] %> 
+                    </th>
+                <% } %> 
+            </tr>
+
+                <% for(let i=0; i<data.length; i++){ %>
+                    <tr>
+                        <% for(let j=0; j<head.length; j++){ %>
+                            <td>
+                                <%= data[i][head[j]] %> 
+                            </td>
+                            
+                        <% } %> 
+                    </tr>
+                <% } %> 
+            
+        </table>
+
+        
+
+    </div>
+    <script>
+        //remove highlighting
+        function removeHighlighting(highlightedElements){
+            highlightedElements.each(function(){
+                var element = $(this);
+                element.replaceWith(element.html());
+            })
+        }
+
+        // add highlighting
+        function addHighlighting(element, textToHighlight){
+            var text = element.text();
+            var highlightedText = '<em>' + textToHighlight + '</em>';
+            var newText = text.replace(textToHighlight, highlightedText);
+
+            element.html(newText);
+        }
+
+        //getting index value
+        function getValue(){
+            return $("#opt :selected").val();
+        }
+
+        //searching value
+        $("#search").on("keyup", function(){
+            var value = $(this).val();
+            var searchval = getValue();
+            console.log(searchval);
+            $("table tr").each(function(index){
+                if(index != 0){
+                    $row = $(this);
+                    var $tdElement = $row.find(`td:nth-child(${eval(searchval+"+"+1)}`);
+                    console.log("val",`${eval(searchval+"+"+1)}`)
+                    var id = $tdElement.text();
+                    var matchedIndex = id.indexOf(value);
+                    if (matchedIndex < 0) {
+                        $row.hide();
+                    }
+                    else {
+                        //highlight matching text, passing element and matched text
+                        addHighlighting($tdElement, value);
+                        $row.show();
+                    }
+
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>

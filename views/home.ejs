@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/home.css">
+    <!-- <script src="https://kit.fontawesome.com/44c6087d03.js" crossorigin="anonymous"></script> -->
+    <script src="https://kit.fontawesome.com/260497237c.js" crossorigin="anonymous"></script>
+
+    
+    <title>Files</title>
+</head>
+<body>
+    <div class="main-body">
+        <section class="container">
+       <div id="text-body"> <h1 id="text"> CSV File Upload</h1></div>
+    <form class="form" action="/upload" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" id="file1" required>
+        <input type="submit" name="submit" id="submit" value="Submit">
+    </form>
+    <div class="file-list">
+        <% for(f of file) {%>
+            <p>
+                <a href="/upload/file/<%= f.file %>"> <%= f.originalName %> </a>
+
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/delete/<%= f.file %>"><i class="far fa-times-circle"></i></a>
+
+            </p>
+        <% } %> 
+    </div>
+<div>
+
+</div>
+</section>
+</div>
+</body>
+</html>

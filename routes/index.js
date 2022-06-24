@@ -1,5 +1,5 @@
 /****************IMPORTING PACKAGE*******************************/
-const express = require("express");
+const express = require("express");//it will just fetch the existing instance, will not create new instance
 
 /****************USING ROUTER************************************/
 const router = express.Router();
